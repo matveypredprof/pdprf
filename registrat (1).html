@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Славное питалово - Регистрация</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .registration-container {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .role-selection {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .role-btn {
+            padding: 12px 24px;
+            border: 2px solid #ddd;
+            background: #f9f9f9;
+            border-radius: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #555;
+        }
+
+        .role-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Кнопка "Войти" */
+        .login-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(102, 126, 234, 0.08);
+        }
+
+        .login-link:hover {
+            background: rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .login-link i {
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 576px) {
+            .registration-container {
+                padding: 30px 20px;
+            }
+
+            .role-selection {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <div class="logo">
+            <h1>Славное питалово</h1>
+        </div>
+
+        <div class="role-selection">
+            <button class="role-btn active" data-role="student">Ученик</button>
+            <button class="role-btn" data-role="cook">Повар</button>
+            <button class="role-btn" data-role="admin">Администратор</button>
+        </div>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="fullName">ФИО</label>
+                <input type="text" id="fullName" placeholder="Иванов Иван Иванович" required>
+            </div>
+
+            <div class="form-group">
+                <label for="login">Логин</label>
+                <input type="text" id="login" placeholder="ivanov_ii" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Зарегистрироваться</button>
+        </form>
+
+        <!-- Кнопка "Войти" -->
+        <a href="entrance.html" class="login-link">
+            <i class="fas fa-arrow-right-to-bracket"></i>
+            Уже есть аккаунт? Войти
+        </a>
+    </div>
+
+    <script>
+        // Role selection logic
+        const roleButtons = document.querySelectorAll('.role-btn');
+        let selectedRole = 'student';
+
+        roleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                roleButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedRole = btn.getAttribute('data-role');
+            });
+        });
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('fullName').value.trim();
+            const login = document.getElementById('login').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!fullName || !login || !password) {
+                alert('Пожалуйста, заполните все поля!');
+                return;
+            }
+
+            alert(`Регистрация успешна!\nРоль: ${selectedRole}\nФИО: ${fullName}\nЛогин: ${login}`);
+            this.reset();
+            document.querySelector('.role-btn[data-role="student"]').click();
+        });
+    </script>
+</body>
+</html>
