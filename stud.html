@@ -49,6 +49,7 @@
             box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .user-info:hover {
@@ -171,7 +172,6 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -341,41 +341,33 @@
     </style>
 </head>
 <body>
-    <!-- Header with user info -->
     <div class="header">
         <div class="logo">
             <h1>Славное питалово</h1>
         </div>
-        <a href="ProfileStudent.html" class="user-info" style="text-decoration: none; color: white;">
+        <a href="ProfileStudent.html" class="user-info">
             <i class="fas fa-user"></i> Иванов Иван Иванович
         </a>
     </div>
 
     <h2 class="menu-title">Меню дня</h2>
 
-    <!-- Breakfast Section -->
     <div class="meal-section">
         <div class="meal-header">
             <i class="fas fa-utensils meal-icon"></i>
             <h3 class="meal-title">Завтрак</h3>
         </div>
-        <div class="menu-grid" id="breakfastGrid">
-            <!-- Breakfast dishes will be populated by JavaScript -->
-        </div>
+        <div class="menu-grid" id="breakfastGrid"></div>
     </div>
 
-    <!-- Lunch Section -->
     <div class="meal-section">
         <div class="meal-header">
             <i class="fas fa-plate-wheat meal-icon"></i>
             <h3 class="meal-title">Обед</h3>
         </div>
-        <div class="menu-grid" id="lunchGrid">
-            <!-- Lunch dishes will be populated by JavaScript -->
-        </div>
+        <div class="menu-grid" id="lunchGrid"></div>
     </div>
 
-    <!-- Modal for dish details -->
     <div class="modal" id="dishModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -405,7 +397,6 @@
     </div>
 
     <script>
-        // Sample menu data separated by meal type
         const menuData = {
             breakfast: [
                 {
@@ -496,7 +487,6 @@
 
         let currentDishId = null;
 
-        // Render menu for specific meal type
         function renderMenu(mealType, containerId) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
@@ -520,7 +510,6 @@
             });
         }
 
-        // Open dish modal
         function openDishModal(dish) {
             currentDishId = dish.id;
             document.getElementById('modalDishName').textContent = dish.name;
@@ -534,12 +523,10 @@
             document.getElementById('dishModal').style.display = 'flex';
         }
 
-        // Close modal
         function closeModal() {
             document.getElementById('dishModal').style.display = 'none';
         }
 
-        // Star rating functionality
         function resetStars() {
             const stars = document.querySelectorAll('.star');
             stars.forEach(star => {
@@ -548,7 +535,6 @@
             });
         }
 
-        // Add event listeners to stars
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('star')) {
                 const value = parseInt(e.target.getAttribute('data-value'));
@@ -566,7 +552,6 @@
             }
         });
 
-        // Submit review
         function submitReview() {
             const rating = document.querySelectorAll('.star.active').length;
             const reviewText = document.getElementById('reviewText').value.trim();
@@ -581,17 +566,15 @@
                 return;
             }
             
-            // Find the dish in both breakfast and lunch arrays
             let dish = null;
             let foundIn = null;
             
-            if (!dish) {
-                dish = menuData.breakfast.find(d => d.id === currentDishId);
-                foundIn = 'breakfast';
-            }
+            dish = menuData.breakfast.find(d => d.id === currentDishId);
             if (!dish) {
                 dish = menuData.lunch.find(d => d.id === currentDishId);
                 foundIn = 'lunch';
+            } else {
+                foundIn = 'breakfast';
             }
             
             if (dish) {
@@ -601,19 +584,16 @@
                     date: new Date().toLocaleDateString()
                 });
                 
-                // Update average rating
                 const totalRating = dish.reviews.reduce((sum, review) => sum + review.rating, 0);
                 dish.rating = parseFloat((totalRating / dish.reviews.length).toFixed(1));
                 
                 alert('Спасибо за ваш отзыв!');
                 closeModal();
-                // Refresh both menus to show updated rating
                 renderMenu('breakfast', 'breakfastGrid');
                 renderMenu('lunch', 'lunchGrid');
             }
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('dishModal');
             if (event.target === modal) {
@@ -621,7 +601,6 @@
             }
         };
 
-        // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             renderMenu('breakfast', 'breakfastGrid');
             renderMenu('lunch', 'lunchGrid');
@@ -629,4 +608,3 @@
     </script>
 </body>
 </html>
-

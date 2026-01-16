@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Закупки | Славное питалово</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%);
+      padding: 1.5rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: clamp(18px, 4vw, 24px);
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .logo span {
+      color: #7c3aed;
+    }
+
+    .back-btn {
+      color: #7c3aed;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: clamp(14px, 2.8vw, 16px);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: clamp(24px, 5vw, 28px);
+      margin-bottom: 2rem;
+      color: #1f2937;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: clamp(15px, 3vw, 16px);
+      color: #1f2937;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #e0e7ff;
+      border-radius: 0.75rem;
+      font-size: clamp(15px, 3vw, 16px);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #c4b5fd;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.75rem;
+      background: linear-gradient(90deg, #7c3aed, #6d28d9);
+      color: white;
+      border: none;
+      border-radius: 0.75rem;
+      font-size: clamp(16px, 3.2vw, 18px);
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #6d28d9, #5b21b6);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="logo">Славное <span>питалово</span></div>
+    <a href="index.html" class="back-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left">
+        <path d="m12 19-7-7 7-7"></path>
+        <path d="M19 12H5"></path>
+      </svg>
+      Назад
+    </a>
+  </header>
+
+  <h1>Новая заявка на закупку</h1>
+
+  <form id="purchaseForm">
+    <div class="form-group">
+      <label>Дата закупки</label>
+      <input type="date" required>
+    </div>
+    <div class="form-group">
+      <label>Продукты (по одному на строку)</label>
+      <textarea rows="6" placeholder="Пример:&#10;— Молоко, 20 л&#10;— Яйца, 100 шт&#10;— Гречка, 10 кг" required></textarea>
+    </div>
+    <div class="form-group">
+      <label>Приоритет</label>
+      <select>
+        <option>Обычный</option>
+        <option selected>Срочный</option>
+      </select>
+    </div>
+    <button type="submit" class="submit-btn">Отправить заявку</button>
+  </form>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  document.getElementById('purchaseForm').onsubmit = function(e) {
+    e.preventDefault();
+    alert('✅ Заявка отправлена на согласование!');
+    this.reset();
+  };
+</script>
+
+</body>
+</html>
+
