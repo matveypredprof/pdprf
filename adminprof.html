@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Славное питалово</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%), url('https://placehold.co/1920x1080/e4edf9/f5f7fa?text=School+Cafeteria+Abstract') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .open-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .open-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.5);
+        }
+
+        .table-header {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            padding: 16px;
+            text-align: left;
+            font-weight: 700;
+            color: #667eea;
+            border-bottom: 2px solid #e0e7ff;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #f3f4f6;
+            color: #333;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #f9fafb;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <h1>Славное питалово</h1>
+        </div>
+    </div>
+
+    <!-- Main Page -->
+    <div id="main-page">
+        <div class="cards-container">
+            <div class="card">
+                <h2 class="card-title">Учет оплат</h2>
+                <button class="open-btn" id="open-payments">Открыть</button>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Закупки</h2>
+                <button class="open-btn" id="open-purchases">Открыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payments Table -->
+    <div id="payments-page" class="hidden">
+        <button class="back-btn" id="back-to-main-payments">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left">
+                <path d="m12 19-7-7 7-7"></path>
+                <path d="M19 12H5"></path>
+            </svg>
+            Назад
+        </button>
+        <div class="table-container">
+            <h2 class="table-header">Учет оплат</h2>
+            <table id="payments-table">
+                <thead>
+                    <tr>
+                        <th>Человек</th>
+                        <th>Класс</th>
+                        <th>Оплата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Иванов Иван</td><td>10А</td><td>2500 ₽</td></tr>
+                    <tr><td>Петров Петр</td><td>10Б</td><td>2500 ₽</td></tr>
+                    <tr><td>Сидорова Анна</td><td>11А</td><td>0 ₽</td></tr>
+                    <tr><td>Кузнецов Дмитрий</td><td>11Б</td><td>2500 ₽</td></tr>
+                    <tr><td>Морозова Елена</td><td>10А</td><td>1500 ₽</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Purchases Table -->
+    <div id="purchases-page" class="hidden">
+        <button class="back-btn" id="back-to-main-purchases">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left">
+                <path d="m12 19-7-7 7-7"></path>
+                <path d="M19 12H5"></path>
+            </svg>
+            Назад
+        </button>
+        <div class="table-container">
+            <h2 class="table-header">Закупки</h2>
+            <table id="purchases-table">
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Количество</th>
+                        <th>Дата</th>
+                        <th>Информация</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Молоко</td><td>50 л</td><td>15.01.2026</td><td>Для завтрака</td></tr>
+                    <tr><td>Хлеб</td><td>30 булок</td><td>15.01.2026</td><td>Пшеничный</td></tr>
+                    <tr><td>Яблоки</td><td>20 кг</td><td>14.01.2026</td><td>Зеленые</td></tr>
+                    <tr><td>Сыр</td><td>10 кг</td><td>14.01.2026</td><td>Твердый</td></tr>
+                    <tr><td>Курица</td><td>15 кг</td><td>13.01.2026</td><td>Филе</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const mainPage = document.getElementById('main-page');
+        const paymentsPage = document.getElementById('payments-page');
+        const purchasesPage = document.getElementById('purchases-page');
+        const openPaymentsBtn = document.getElementById('open-payments');
+        const openPurchasesBtn = document.getElementById('open-purchases');
+        const backToMainPayments = document.getElementById('back-to-main-payments');
+        const backToMainPurchases = document.getElementById('back-to-main-purchases');
+
+        openPaymentsBtn.addEventListener('click', () => {
+            mainPage.classList.add('hidden');
+            paymentsPage.classList.remove('hidden');
+        });
+
+        openPurchasesBtn.addEventListener('click', () => {
+            mainPage.classList.add('hidden');
+            purchasesPage.classList.remove('hidden');
+        });
+
+        backToMainPayments.addEventListener('click', () => {
+            paymentsPage.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+        });
+
+        backToMainPurchases.addEventListener('click', () => {
+            purchasesPage.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
