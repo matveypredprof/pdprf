@@ -31,25 +31,27 @@
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
       margin-bottom: 2rem;
       display: flex;
-      align-items: center;
     }
 
-    .logo {
+    .logo h1 {
       font-size: clamp(18px, 4vw, 28px);
-      font-weight: 800;
-      color: #1f2937;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
     }
 
-    .logo span {
-      color: #7c3aed;
-    }
-
-    h1 {
+    h1.page-title {
       font-size: clamp(24px, 5vw, 32px);
       margin-bottom: 2rem;
       text-align: center;
-      color: #1f2937;
       font-weight: 700;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .dashboard {
@@ -133,10 +135,12 @@
 
 <div class="container">
   <header>
-    <div class="logo">Славное <span>питалово</span></div>
+    <div class="logo">
+      <h1>Славное питалово</h1>
+    </div>
   </header>
 
-  <h1>Панель повара</h1>
+  <h1 class="page-title">Панель повара</h1>
 
   <div class="dashboard">
     <a href="orders.html" class="card">
@@ -157,7 +161,6 @@
       </svg>
       <h2>Остатки</h2>
       <p>Контроль склада: продукты и готовые блюда в наличии.</p>
-
     </a>
 
     <a href="purchases.html" class="card">
@@ -168,7 +171,6 @@
       </svg>
       <h2>Закупки</h2>
       <p>Формируйте заявки на пополнение продуктов.</p>
-
     </a>
   </div>
 

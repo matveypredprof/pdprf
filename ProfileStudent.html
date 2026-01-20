@@ -19,6 +19,30 @@
             padding: 1.5rem;
         }
 
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .menu-btn {
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15);
+        }
+
         .container {
             max-width: 400px;
             margin: 0 auto;
@@ -253,6 +277,11 @@
     </style>
 </head>
 <body>
+    <div class="header-container">
+        <button class="menu-btn" id="menu-btn">Меню</button>
+        <div></div> <!-- Empty div for spacing -->
+    </div>
+
     <div class="container">
         <div class="avatar-container">
             <div class="avatar" id="avatar">
@@ -397,6 +426,7 @@
         const cardNumberInput = document.getElementById('card-number');
         const cardOwnerInput = document.getElementById('card-owner');
         const cardAmountInput = document.getElementById('card-amount');
+        const menuBtn = document.getElementById('menu-btn');
 
         // State
         let balance = 2500;
@@ -429,6 +459,10 @@
             }
         });
 
+        menuBtn.addEventListener('click', () => {
+            window.location.href = 'stud.html'
+        });
+
         function resetForm() {
             cardNumberInput.value = '';
             cardOwnerInput.value = '';
@@ -437,5 +471,4 @@
     </script>
 </body>
 </html>
-
 
